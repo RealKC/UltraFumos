@@ -16,11 +16,9 @@ namespace FumoSkull
         Harmony fumo;
 
         public static AssetBundle fumobundle;
-        static Shader unlit;
 
         private void Awake()
         {
-            unlit = Shader.Find("Unlit/Texture");
             fumobundle = AssetBundle.LoadFromMemory(Resource1.fumoskulls);
             fumobundle.LoadAllAssets();
             fumo = new Harmony("Tony.Fumoskulls");
@@ -60,7 +58,7 @@ namespace FumoSkull
                             return;
                     }
                     masterSkull.enabled = false;
-                    CreateFumo(fumoType, masterSkull.transform, fumoposition, fumorotation, fumoscale);
+                    CreateFumo(fumoType, masterSkull.transform, fumoposition, fumorotation, fumoscale, masterSkull.material.shader);
                 }
             }
         }
@@ -80,7 +78,7 @@ namespace FumoSkull
                     Vector3 fumoposition = new Vector3(0f, 0f, 2f);
                     Quaternion fumorotation = Quaternion.Euler(0, 0, 60);
                     Vector3 fumoscale = new Vector3(1f, 1f, 1f) * 10f;
-                    CreateFumo("Sakuya", __instance.transform, fumoposition, fumorotation, fumoscale);
+                    CreateFumo("Sakuya", __instance.transform, fumoposition, fumorotation, fumoscale, masterSkull[0].material.shader);
                 }
             }
         }
@@ -99,7 +97,7 @@ namespace FumoSkull
                     Quaternion fumorotation = Quaternion.Euler(270, 0, 0);
                     Vector3 fumoscale = new Vector3(1, 1, 1) * 0.0075f;
                     fumoType = "Cirno";
-                    CreateFumo(fumoType, Ferryhead.transform, fumoposition, fumorotation, fumoscale);
+                    CreateFumo(fumoType, Ferryhead.transform, fumoposition, fumorotation, fumoscale, __instance.GetComponent<Renderer>().material.shader);
                 }
             }
         }
@@ -118,7 +116,7 @@ namespace FumoSkull
                     Vector3 fumoscale = new Vector3(1, 1, 1) * 2.75f;
                     string fumoType = "YuYu";
                     masterSkull.enabled = false;
-                    CreateFumo(fumoType, masterSkull.transform.parent.transform, fumoposition, fumorotation, fumoscale);
+                    CreateFumo(fumoType, masterSkull.transform.parent.transform, fumoposition, fumorotation, fumoscale, masterSkull.material.shader);
                 }
             }
         }
@@ -136,12 +134,12 @@ namespace FumoSkull
                     Vector3 fumoscale = new Vector3(1, 1, 1) * 2.75f;
                     string fumoType = "Koishi";
                     masterSkull.enabled = false;
-                    CreateFumo(fumoType, masterSkull.transform.parent.transform, fumoposition, fumorotation, fumoscale);
+                    CreateFumo(fumoType, masterSkull.transform.parent.transform, fumoposition, fumorotation, fumoscale, masterSkull.material.shader);
                 }
             }
         }
 
-        public static void CreateFumo(string fumoType, Transform masterSkull, Vector3 position, Quaternion rotation, Vector3 scale)
+        public static void CreateFumo(string fumoType, Transform masterSkull, Vector3 position, Quaternion rotation, Vector3 scale, Shader shader)
         {
             Debug.Log("Swapping " + masterSkull.name + " to " + fumoType);
             GameObject _fumo = allFumos[fumoType];
@@ -150,13 +148,13 @@ namespace FumoSkull
             SkullFumo.transform.localRotation = rotation;
             SkullFumo.transform.localPosition = position;
             SkullFumo.transform.localScale = scale;
-            Renderer[] fumomatter = SkullFumo.GetComponentsInChildren<Renderer>();
+            Renderer[] fumomatter = SkullFumo.GetComponentsInChildren<Renderer>(includeInactive: true);
             foreach (Renderer ren in fumomatter)
             {
                 Material[] fumomaterial = ren.materials;
                 foreach (Material mat in fumomaterial)
                 {
-                    mat.shader = unlit;
+                    mat.shader = shader;
                 }
             }
         }
