@@ -15,3 +15,4 @@ FumoSkull/FumoSkull/bin/Release/netstandard2.0/FumoSkull.pdb
 FumoSkull/FumoSkull/bin/Release/netstandard2.0/FumoSkull.deps.json
 FumoSkull/FumoSkull/bin/Release/netstandard2.0/Facepunch.Steamworks.Win64.dll
 FumoSkull/FumoSkull/bin/Release/netstandard2.0/Assembly-CSharp.dll
+*.zip
