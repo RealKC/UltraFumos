@@ -1,14 +1,19 @@
-# FumoSkulls
-Replaces both the red and blue skulls with fumos (reimu and crino)
+# UltraFumos
+
+An updated version of [FumoSkulls](https://thunderstore.io/c/ultrakill/p/Snorkelin_Tony/FumoSkulls/), made with permission.
+
+Features:
+* replaces Red Skull with Reimu, Blue Skull with Cirno
+* replaces soap with Koishi
+* replaces rockets with Sakura
+* replaces torch (think 4-3) with Yuyuko
+
+![an image showing the various replacements](https://raw.githubusercontent.com/RealKC/UltraFumos/master/screenshot.png)
 
 
-![image](https://user-images.githubusercontent.com/106477378/185877388-baf10125-4586-4f56-aea0-037cf8fa20ad.png)
+## Credits
 
-
-![image](https://user-images.githubusercontent.com/106477378/185877472-1587d877-2a56-4563-b8f7-b9dd935ae16b.png)
-
-
-credits:
-Renafox - Reimu and Cirno 3d scans on sketchfab
-203Null - Koishi 3d scan on sketchfab
-KBMollysuh - Yuyuko 3d scan on sketchfab
+* Renafox - Reimu and Cirno 3d scans on sketchfab
+* 203Null - Koishi 3d scan on sketchfab
+* KBMollysuh - Yuyuko 3d scan on sketchfab
+* [@The-DoomMan](https://github.com/The-DoomMan) for making the original mod and giving me permission to upload an updated version
