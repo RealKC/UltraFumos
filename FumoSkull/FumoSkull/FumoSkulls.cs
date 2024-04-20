@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FumoSkull
 {
-    [BepInPlugin("Tony.Fumoskulls", "Fumo Skulls", "1.2")]
+    [BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.2")]
     public class FumoSkulls : BaseUnityPlugin
     {
         public static Dictionary<string, GameObject> allFumos = new Dictionary<string, GameObject>();
