@@ -143,7 +143,7 @@ namespace FumoSkull
             Debug.Log("Swapping " + masterSkull.name + " to " + fumoType);
             GameObject fumo = allFumos[fumoType];
             GameObject skullFumo = GameObject.Instantiate(fumo, masterSkull);
-            skullFumo.active = true;
+            skullFumo.SetActive(true);
             skullFumo.transform.localRotation = rotation;
             skullFumo.transform.localPosition = position;
             skullFumo.transform.localScale = scale;

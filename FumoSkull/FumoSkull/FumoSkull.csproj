@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\SteamLibrary\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>/bulk/storage1/Games/SteamLibrary/steamapps/common/ULTRAKILL/ULTRAKILL_Data/Managed/Assembly-CSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 
