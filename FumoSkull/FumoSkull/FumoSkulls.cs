@@ -21,7 +21,7 @@ namespace FumoSkull
         {
             fumoBundle = AssetBundle.LoadFromMemory(Resource1.fumoskulls);
             fumoBundle.LoadAllAssets();
-            fumo = new Harmony("Tony.Fumoskulls");
+            fumo = new Harmony("UltraFumosTeam.UltraFumos");
             fumo.PatchAll();
             allFumos.Add("Cirno", fumoBundle.LoadAsset<GameObject>("CirnoGO"));
             allFumos.Add("Reimu", fumoBundle.LoadAsset<GameObject>("ReimuGO"));
