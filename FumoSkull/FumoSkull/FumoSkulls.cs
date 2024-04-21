@@ -83,25 +83,6 @@ namespace FumoSkull
             }
         }
 
-        [HarmonyPatch(typeof(Ferryman), "Start")]
-        public static class FerrymanHeadPatcher
-        {
-            public static void Prefix(Ferryman __instance)
-            {
-
-                GameObject ferrymanHead = __instance.GetComponent<EnemyIdentifier>().weakPoint;
-                if (ferrymanHead)
-                {
-                    Vector3 fumoPosition = new Vector3(0, 0.0015f, 0);
-                    Quaternion fumoRotation = Quaternion.Euler(270, 0, 0);
-                    Vector3 fumoScale = new Vector3(1, 1, 1) * 0.0075f;
-                    string fumoType = "Cirno";
-                    CreateFumo(fumoType, ferrymanHead.transform, fumoPosition, fumoRotation, fumoScale, __instance.GetComponent<Renderer>().material.shader);
-                }
-            }
-        }
-
-
         [HarmonyPatch(typeof(Torch), "Start")]
         public static class FumofiyTorch
         {
