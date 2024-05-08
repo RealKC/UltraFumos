@@ -17,3 +17,5 @@ FumoSkull/FumoSkull/bin/Release/netstandard2.0/Facepunch.Steamworks.Win64.dll
 FumoSkull/FumoSkull/bin/Release/netstandard2.0/Assembly-CSharp.dll
 *.zip
 .vs
+.idea/
+*.DotSettings.user
