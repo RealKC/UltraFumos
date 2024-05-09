@@ -31,6 +31,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource1.resx</DependentUpon>
+      <DependentUpon>Resources/fumoskulls</DependentUpon>
     </Compile>
   </ItemGroup>
 
