@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources/fumoskulls" LogicalName="fumoskulls" />
+    <EmbeddedResource Include="../../FumoSkullUnityProject/AssetBundle/fumoskulls" LogicalName="fumoskulls" />
   </ItemGroup>
 
 </Project>
