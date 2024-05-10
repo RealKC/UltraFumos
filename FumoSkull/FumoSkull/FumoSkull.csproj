@@ -16,10 +16,6 @@
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.16" IncludeAssets="compile" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
-  </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>/bulk/storage1/Games/SteamLibrary/steamapps/common/ULTRAKILL/ULTRAKILL_Data/Managed/Assembly-CSharp.dll</HintPath>
@@ -27,18 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resource1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
-      <DependentUpon>Resources/fumoskulls</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Resources/fumoskulls" LogicalName="fumoskulls" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>

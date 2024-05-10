@@ -19,7 +19,10 @@ namespace FumoSkull
 
         private void Awake()
         {
-            fumoBundle = AssetBundle.LoadFromMemory(Resource1.fumoskulls);
+            using (var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls"))
+            {
+                fumoBundle = AssetBundle.LoadFromStream(stream);
+            }
             fumoBundle.LoadAllAssets();
             fumo = new Harmony("UltraFumosTeam.UltraFumos");
             fumo.PatchAll();
