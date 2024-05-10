@@ -19,7 +19,7 @@ namespace FumoSkull
 
         private void Awake()
         {
-            using (var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("FumoSkulls.Resources.fumoskulls"))
+            using (var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls"))
             {
                 fumoBundle = AssetBundle.LoadFromStream(stream);
             }
