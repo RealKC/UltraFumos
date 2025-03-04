@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ULTRAKILL;
 using System.Linq;
+using ScriptableObjects;
+using System;
 
 namespace FumoSkull
 {
@@ -22,8 +25,10 @@ namespace FumoSkull
             var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls");
             fumoBundle = AssetBundle.LoadFromStream(stream);
             fumoBundle.LoadAllAssets();
+
             fumo = new Harmony("UltraFumosTeam.UltraFumos");
             fumo.PatchAll();
+
             allFumos.Add("Cirno", fumoBundle.LoadAsset<GameObject>("CirnoGO"));
             allFumos.Add("Reimu", fumoBundle.LoadAsset<GameObject>("ReimuGO"));
             allFumos.Add("YuYu", fumoBundle.LoadAsset<GameObject>("YuYuGO"));
@@ -31,40 +36,75 @@ namespace FumoSkull
             allFumos.Add("Sakuya", fumoBundle.LoadAsset<GameObject>("SakuyaGO"));
         }
 
-        [HarmonyPatch(typeof(Skull), "Start")]
+        [HarmonyPatch(typeof(Skull), "Awake")]
         public static class FumofiySkull
         {
-            public static void Prefix(Skull __instance)
+            public static void Postfix(Skull __instance)
             {
-                Renderer renderer = __instance.gameObject.GetComponent<Renderer>();
+                ModifyMaterial modifyMaterial;
+                try
+                {
+                    modifyMaterial = Traverse.Create(__instance).Field<ModifyMaterial>("mod").Value;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Failed to get `mod` field of skull: {e.GetType()} {e.Message}");
+                    return;
+                }
+
+
+                Renderer renderer;
+                try
+                {
+                    var traverse = Traverse.Create(modifyMaterial);
+                    traverse.Method("SetValues").GetValue();
+                    renderer = traverse.Field<Renderer>("rend").Value;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Failed to get `rend` field of modifyMaterial: {e.GetType()} {e.Message}");
+                    return;
+                }
+
                 if (renderer)
                 {
-                    string fumoType;
-                    Vector3 fumoPosition = new Vector3(0.15f, 0, 0.15f);
-                    Quaternion fumoRotation = Quaternion.Euler(0, 20, 0);
-                    Vector3 fumoScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    string type;
+                    Vector3 position;
                     switch (__instance.GetComponent<ItemIdentifier>().itemType)
                     {
                         case ItemType.SkullBlue:
-                            fumoType = "Cirno";
-                            fumoPosition = new Vector3(0.05f, 0, 0.2f);
+                            type = "Cirno";
+                            position = new Vector3(-0.05f, 0, 0.15f);
                             break;
 
                         case ItemType.SkullRed:
-                            fumoType = "Reimu";
+                            type = "Reimu";
+                            position = new Vector3(-0.05f, 0, 0.15f);
                             break;
 
                         default:
-                            fumoType = "Reimu";
                             return;
                     }
+
                     renderer.enabled = false;
-                    CreateFumo(fumoType, renderer.transform, fumoPosition, fumoRotation, fumoScale, renderer.material.shader);
+
+                    CreateFumo(
+                        type,
+                        renderer.transform,
+                        position: position,
+                        rotation: Quaternion.Euler(20, 0, 160),
+                        scale: new Vector3(0.8f, 0.8f, 0.8f),
+                        renderer.material.shader
+                    );
+                }
+                else
+                {
+                    Debug.LogWarning("renderer was null");
                 }
             }
         }
 
-        [HarmonyPatch(typeof(Grenade), "Start")]
+        [HarmonyPatch(typeof(Grenade), "Awake")]
         public static class FumofiyRocket
         {
             public static void Postfix(Grenade __instance)
@@ -76,10 +116,13 @@ namespace FumoSkull
                     {
                         meshRenderer[i].enabled = false;
                     }
-                    Vector3 fumoPosition = new Vector3(0f, 0f, 2f);
-                    Quaternion fumoRotation = Quaternion.Euler(0, 0, 60);
-                    Vector3 fumoScale = new Vector3(1f, 1f, 1f) * 10f;
-                    CreateFumo("Sakuya", __instance.transform, fumoPosition, fumoRotation, fumoScale, meshRenderer[0].material.shader);
+
+                    CreateFumo("Sakuya", __instance.transform,
+                        position: new Vector3(0f, 0f, 2f),
+                        rotation: Quaternion.Euler(0, 0, 0),
+                        scale: new Vector3(1f, 1f, 1f),
+                        meshRenderer[0].material.shader
+                    );
                 }
             }
         }
@@ -92,12 +135,15 @@ namespace FumoSkull
                 Renderer meshRenderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
                 if (meshRenderer)
                 {
-                    Vector3 fumoPosition = new Vector3(0, 0.1f, 0);
-                    Quaternion fumoRotation = Quaternion.Euler(270, 270, 0);
-                    Vector3 fumoScale = new Vector3(1, 1, 1) * 2.75f;
-                    string fumoType = "YuYu";
                     meshRenderer.enabled = false;
-                    CreateFumo(fumoType, meshRenderer.transform.parent.transform, fumoPosition, fumoRotation, fumoScale, meshRenderer.material.shader);
+                    CreateFumo(
+                        "YuYu",
+                        meshRenderer.transform.parent.transform,
+                        position: new Vector3(0, 0.1f, 0),
+                        rotation: Quaternion.Euler(270, 270, 0),
+                        scale: new Vector3(1, 1, 1) * 2.75f,
+                        meshRenderer.material.shader
+                    );
                 }
             }
         }
@@ -110,12 +156,15 @@ namespace FumoSkull
                 Renderer masterSkull = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
                 if (masterSkull)
                 {
-                    Vector3 fumoPosition = new Vector3(0, 0.1f, 0);
-                    Quaternion fumoRotation = Quaternion.Euler(270, 270, 0);
-                    Vector3 fumoScale = new Vector3(1, 1, 1) * 2.75f;
-                    string fumoType = "Koishi";
                     masterSkull.enabled = false;
-                    CreateFumo(fumoType, masterSkull.transform.parent.transform, fumoPosition, fumoRotation, fumoScale, masterSkull.material.shader);
+                    CreateFumo(
+                        "Koishi",
+                        masterSkull.transform.parent.transform,
+                        position: new Vector3(0, 0.1f, 0),
+                        rotation: Quaternion.Euler(270, 270, 0),
+                        scale: new Vector3(1, 1, 1) * 2.75f,
+                        masterSkull.material.shader
+                    );
                 }
             }
         }
@@ -123,12 +172,15 @@ namespace FumoSkull
         public static void CreateFumo(string fumoType, Transform masterSkull, Vector3 position, Quaternion rotation, Vector3 scale, Shader shader)
         {
             Debug.Log("Swapping " + masterSkull.name + " to " + fumoType);
+
             GameObject fumo = allFumos[fumoType];
-            GameObject skullFumo = GameObject.Instantiate(fumo, masterSkull);
+
+            GameObject skullFumo = Instantiate(fumo, masterSkull);
             skullFumo.SetActive(true);
             skullFumo.transform.localRotation = rotation;
             skullFumo.transform.localPosition = position;
             skullFumo.transform.localScale = scale;
+
             Renderer[] fumoRenderers = skullFumo.GetComponentsInChildren<Renderer>(includeInactive: true);
             foreach (Renderer render in fumoRenderers)
             {
