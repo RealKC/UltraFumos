@@ -74,12 +74,12 @@ namespace FumoSkull
                     {
                         case ItemType.SkullBlue:
                             type = "Cirno";
-                            position = new Vector3(-0.05f, 0, 0.15f);
+                            position = new Vector3(0.05f, 0.03f, 0.1f);
                             break;
 
                         case ItemType.SkullRed:
                             type = "Reimu";
-                            position = new Vector3(-0.05f, 0, 0.15f);
+                            position = new Vector3(-0.015f, 0, 0.15f);
                             break;
 
                         default:
@@ -92,7 +92,7 @@ namespace FumoSkull
                         type,
                         renderer.transform,
                         position: position,
-                        rotation: Quaternion.Euler(20, 0, 160),
+                        rotation: Quaternion.Euler(15, 0, 270),
                         scale: new Vector3(0.8f, 0.8f, 0.8f),
                         renderer.material.shader
                     );
@@ -119,8 +119,8 @@ namespace FumoSkull
 
                     CreateFumo("Sakuya", __instance.transform,
                         position: new Vector3(0f, 0f, 2f),
-                        rotation: Quaternion.Euler(0, 0, 0),
-                        scale: new Vector3(1f, 1f, 1f),
+                        rotation: Quaternion.Euler(0, 0, 90),
+                        scale: new Vector3(10f, 10f, 10f),
                         meshRenderer[0].material.shader
                     );
                 }
