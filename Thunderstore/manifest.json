@@ -1,6 +1,6 @@
 {
     "name": "UltraFumos",
-    "version_number": "1.2.1",
+    "version_number": "1.3.0",
     "website_url": "https://github.com/RealKC/UltraFumos",
     "description": "Replaces skulls, rockets, soap and the torch with fumos",
     "dependencies": [

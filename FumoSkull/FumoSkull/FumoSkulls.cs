@@ -11,7 +11,7 @@ using System;
 
 namespace FumoSkull
 {
-    [BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.2")]
+    [BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.3")]
     public class FumoSkulls : BaseUnityPlugin
     {
         public static Dictionary<string, GameObject> allFumos = new Dictionary<string, GameObject>();
