@@ -28,7 +28,7 @@ static class FumoExtensions
 [BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.3")]
 public class FumoSkulls : BaseUnityPlugin
 {
-    static Dictionary<Fumo, GameObject> allFumos = [];
+    static readonly Dictionary<Fumo, GameObject> allFumos = [];
 
     Harmony fumo;
 
