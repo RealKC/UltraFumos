@@ -23,9 +23,10 @@ If you believe you were not properly credited, please tell me and I will change 
   * [Cirno scan](https://sketchfab.com/3d-models/project-cirno-fumo-3d-scan-efd2a7f4dbf048c1a18438db7f86c4b9) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
   * [Sakuya scan](https://sketchfab.com/3d-models/project-inu-sakuya-doll-3d-scan-7a573802931f485db8118a9d64f26362) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
   * [Youmu scan](https://sketchfab.com/3d-models/project-v2-youmu-konpaku-fumo-3d-scan-0031ed6284ac4310952095302aad77c2) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  * [Mouku scan](https://sketchfab.com/3d-models/project-mokou-fujiwara-fumo-3d-scan-f58946a7b7304ef099c0275b1ac3ef18) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [203Null](https://sketchfab.com/203Null) on Sketchfab:
   * [Koishi scan](https://sketchfab.com/3d-models/project-koishi-komeiji-fumo-37a56b489b5c4440bbabb7b7777036f6) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-* [KBMollysuh](https://sketchfab.com/kbmollysuh):
+* [KBMollysuh](https://sketchfab.com/kbmollysuh) on Sketchfab:
   * [Yuyuko scan](https://sketchfab.com/3d-models/project-yuyuko-fumo-3d-reconstruction-c53f91a1a962444fb1568f494dbc13eb) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 As far as I can tell, the changes to the models were doing what's necessary to get them into Unity, but I'm not too sure.

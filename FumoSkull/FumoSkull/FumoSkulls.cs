@@ -14,6 +14,7 @@ enum Fumo
     Koishi,
     Sakuya,
     Youmu,
+    Mokou,
 }
 
 static class FumoExtensions
@@ -36,6 +37,7 @@ public class FumoSkulls : BaseUnityPlugin
 
     private void Awake()
     {
+
         var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls");
         fumoBundle = AssetBundle.LoadFromStream(stream);
         fumoBundle.LoadAllAssets();
@@ -122,18 +124,51 @@ public class FumoSkulls : BaseUnityPlugin
     {
         public static void Postfix(Grenade __instance)
         {
-            Renderer[] meshRenderer = __instance.gameObject.GetComponentsInChildren<MeshRenderer>();
-            if (meshRenderer.Length > 0 && __instance.rocket)
+            if (__instance.rocket)
+            {
+                PatchRocket(__instance);
+            }
+            else
+            {
+                PatchCoreEject(__instance);
+            }
+        }
+
+
+
+        static void PatchRocket(Grenade grenade)
+        {
+            Renderer[] meshRenderer = grenade.gameObject.GetComponentsInChildren<MeshRenderer>();
+            if (meshRenderer.Length > 0)
             {
                 for (int i = 0; i < meshRenderer.Length; i++)
                 {
                     meshRenderer[i].enabled = false;
                 }
 
-                CreateFumo(Fumo.Sakuya, __instance.transform,
+                CreateFumo(Fumo.Sakuya, grenade.transform,
                     position: new Vector3(0f, 0f, 2f),
                     rotation: Quaternion.Euler(0, 0, 90),
                     scale: new Vector3(10f, 10f, 10f),
+                    meshRenderer[0].material.shader
+                );
+            }
+        }
+
+        private static void PatchCoreEject(Grenade grenade)
+        {
+            Renderer[] meshRenderer = grenade.gameObject.GetComponentsInChildren<MeshRenderer>();
+            if (meshRenderer.Length > 0)
+            {
+                for (int i = 0; i < meshRenderer.Length; i++)
+                {
+                    meshRenderer[i].enabled = false;
+                }
+
+                CreateFumo(Fumo.Mokou, grenade.transform,
+                    position: new Vector3(0f, -0.5f, 2f),
+                    rotation: Quaternion.Euler(0, 0, 90),
+                    scale: new Vector3(3.5f, 3.5f, 3.5f),
                     meshRenderer[0].material.shader
                 );
             }
