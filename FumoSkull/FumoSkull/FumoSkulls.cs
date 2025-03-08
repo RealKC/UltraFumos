@@ -31,19 +31,19 @@ public class FumoSkulls : BaseUnityPlugin
 {
     static readonly Dictionary<Fumo, GameObject> allFumos = [];
 
-    Harmony fumo;
+    Harmony harmony;
 
-    public static AssetBundle fumoBundle;
+    static AssetBundle fumoBundle;
 
-    private void Awake()
+    public void Awake()
     {
 
         var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls");
         fumoBundle = AssetBundle.LoadFromStream(stream);
         fumoBundle.LoadAllAssets();
 
-        fumo = new Harmony("UltraFumosTeam.UltraFumos");
-        fumo.PatchAll();
+        harmony = new Harmony("UltraFumosTeam.UltraFumos");
+        harmony.PatchAll();
 
         foreach (Fumo fumo in Enum.GetValues(typeof(Fumo)))
         {
@@ -52,9 +52,9 @@ public class FumoSkulls : BaseUnityPlugin
     }
 
     [HarmonyPatch(typeof(Skull), "Awake")]
-    public static class FumofiySkull
+    static class FumofiySkull
     {
-        public static void Postfix(Skull __instance)
+        static void Postfix(Skull __instance)
         {
             ModifyMaterial modifyMaterial;
             try
@@ -120,9 +120,9 @@ public class FumoSkulls : BaseUnityPlugin
     }
 
     [HarmonyPatch(typeof(Grenade), "Awake")]
-    public static class FumofiyRocket
+    static class FumofiyRocket
     {
-        public static void Postfix(Grenade __instance)
+        static void Postfix(Grenade __instance)
         {
             if (__instance.rocket)
             {
@@ -155,7 +155,7 @@ public class FumoSkulls : BaseUnityPlugin
             }
         }
 
-        private static void PatchCoreEject(Grenade grenade)
+        static void PatchCoreEject(Grenade grenade)
         {
             Renderer[] meshRenderer = grenade.gameObject.GetComponentsInChildren<MeshRenderer>();
             if (meshRenderer.Length > 0)
@@ -176,9 +176,9 @@ public class FumoSkulls : BaseUnityPlugin
     }
 
     [HarmonyPatch(typeof(Torch), "Start")]
-    public static class FumofiyTorch
+    static class FumofiyTorch
     {
-        public static void Prefix(Torch __instance)
+        static void Prefix(Torch __instance)
         {
             Renderer meshRenderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
             if (meshRenderer)
@@ -197,9 +197,9 @@ public class FumoSkulls : BaseUnityPlugin
     }
 
     [HarmonyPatch(typeof(Soap), "Start")]
-    public static class FumofiySoap
+    static class FumofiySoap
     {
-        public static void Prefix(Soap __instance)
+        static void Prefix(Soap __instance)
         {
             Renderer masterSkull = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
             if (masterSkull)
@@ -218,9 +218,9 @@ public class FumoSkulls : BaseUnityPlugin
     }
 
     [HarmonyPatch(typeof(Landmine), "Start")]
-    public static class FumofiyLandmine
+    static class FumofiyLandmine
     {
-        public static void Postfix(Landmine __instance)
+        static void Postfix(Landmine __instance)
         {
             var renderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
 
