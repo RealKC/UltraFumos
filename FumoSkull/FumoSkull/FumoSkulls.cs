@@ -8,13 +8,33 @@ using ULTRAKILL;
 using System.Linq;
 using ScriptableObjects;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace FumoSkull;
+
+enum Fumo
+{
+    Cirno,
+    Reimu,
+    Yuyuko,
+    Koishi,
+    Sakuya,
+    Youmu,
+}
+
+static class FumoExtensions
+{
+    public static string GameObjectName(this Fumo fumo) => fumo switch
+    {
+        Fumo.Yuyuko => "YuYuGO",
+        _ => $"{fumo}GO",
+    };
+}
 
 [BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.3")]
 public class FumoSkulls : BaseUnityPlugin
 {
-    public static Dictionary<string, GameObject> allFumos = new Dictionary<string, GameObject>();
+    static Dictionary<Fumo, GameObject> allFumos = [];
 
     Harmony fumo;
 
@@ -29,12 +49,10 @@ public class FumoSkulls : BaseUnityPlugin
         fumo = new Harmony("UltraFumosTeam.UltraFumos");
         fumo.PatchAll();
 
-        allFumos.Add("Cirno", fumoBundle.LoadAsset<GameObject>("CirnoGO"));
-        allFumos.Add("Reimu", fumoBundle.LoadAsset<GameObject>("ReimuGO"));
-        allFumos.Add("YuYu", fumoBundle.LoadAsset<GameObject>("YuYuGO"));
-        allFumos.Add("Koishi", fumoBundle.LoadAsset<GameObject>("KoishiGO"));
-        allFumos.Add("Sakuya", fumoBundle.LoadAsset<GameObject>("SakuyaGO"));
-        allFumos.Add("Youmu", fumoBundle.LoadAsset<GameObject>("YoumuGO"));
+        foreach (Fumo fumo in Enum.GetValues(typeof(Fumo)))
+        {
+            allFumos.Add(fumo, fumoBundle.LoadAsset<GameObject>(fumo.GameObjectName()));
+        }
     }
 
     [HarmonyPatch(typeof(Skull), "Awake")]
@@ -69,17 +87,17 @@ public class FumoSkulls : BaseUnityPlugin
 
             if (renderer)
             {
-                string type;
+                Fumo type;
                 Vector3 position;
                 switch (__instance.GetComponent<ItemIdentifier>().itemType)
                 {
                     case ItemType.SkullBlue:
-                        type = "Cirno";
+                        type = Fumo.Cirno;
                         position = new Vector3(0.05f, 0.03f, 0.1f);
                         break;
 
                     case ItemType.SkullRed:
-                        type = "Reimu";
+                        type = Fumo.Reimu;
                         position = new Vector3(-0.015f, 0, 0.15f);
                         break;
 
@@ -118,7 +136,7 @@ public class FumoSkulls : BaseUnityPlugin
                     meshRenderer[i].enabled = false;
                 }
 
-                CreateFumo("Sakuya", __instance.transform,
+                CreateFumo(Fumo.Sakuya, __instance.transform,
                     position: new Vector3(0f, 0f, 2f),
                     rotation: Quaternion.Euler(0, 0, 90),
                     scale: new Vector3(10f, 10f, 10f),
@@ -138,7 +156,7 @@ public class FumoSkulls : BaseUnityPlugin
             {
                 meshRenderer.enabled = false;
                 CreateFumo(
-                    "YuYu",
+                    Fumo.Yuyuko,
                     meshRenderer.transform.parent.transform,
                     position: new Vector3(0, 0.1f, 0),
                     rotation: Quaternion.Euler(270, 270, 0),
@@ -159,7 +177,7 @@ public class FumoSkulls : BaseUnityPlugin
             {
                 masterSkull.enabled = false;
                 CreateFumo(
-                    "Koishi",
+                    Fumo.Koishi,
                     masterSkull.transform.parent.transform,
                     position: new Vector3(0, 0.1f, 0),
                     rotation: Quaternion.Euler(270, 270, 0),
@@ -186,7 +204,7 @@ public class FumoSkulls : BaseUnityPlugin
             {
                 renderer.enabled = false;
                 CreateFumo(
-                    "Youmu",
+                    Fumo.Youmu,
                     lightCylinder.transform,
                     position: new Vector3(0, 0, 0),
                     rotation: Quaternion.Euler(0, 270, 0),
@@ -197,7 +215,7 @@ public class FumoSkulls : BaseUnityPlugin
         }
     }
 
-    public static void CreateFumo(string fumoType, Transform masterSkull, Vector3 position, Quaternion rotation, Vector3 scale, Shader shader)
+    static void CreateFumo(Fumo fumoType, Transform masterSkull, Vector3 position, Quaternion rotation, Vector3 scale, Shader shader)
     {
         Debug.Log("Swapping " + masterSkull.name + " to " + fumoType);
 
