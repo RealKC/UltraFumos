@@ -7,6 +7,7 @@ Features:
 * replaces soap with Koishi
 * replaces rockets with Sakura
 * replaces torch (think 4-3) with Yuyuko
+* replaces landmines with Youmu
 
 ![an image showing the various replacements](https://raw.githubusercontent.com/RealKC/UltraFumos/master/screenshot.png)
 
@@ -18,6 +19,7 @@ Features:
 * [Renafox](https://sketchfab.com/kryik1023) on Sketchfab:
   * [Reimu scan](https://sketchfab.com/3d-models/project-reimu-fumo-3d-scan-c4723331d1a2400d942c00004d59e1cc) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
   * [Cirno scan](https://sketchfab.com/3d-models/project-cirno-fumo-3d-scan-efd2a7f4dbf048c1a18438db7f86c4b9) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  * [Youmu scan](https://sketchfab.com/3d-models/project-v2-youmu-konpaku-fumo-3d-scan-0031ed6284ac4310952095302aad77c2) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [203Null](https://sketchfab.com/203Null) on Sketchfab:
   * [Koishi scan](https://sketchfab.com/3d-models/project-koishi-komeiji-fumo-37a56b489b5c4440bbabb7b7777036f6) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [KBMollysuh](https://sketchfab.com/kbmollysuh):

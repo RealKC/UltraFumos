@@ -34,6 +34,7 @@ namespace FumoSkull
             allFumos.Add("YuYu", fumoBundle.LoadAsset<GameObject>("YuYuGO"));
             allFumos.Add("Koishi", fumoBundle.LoadAsset<GameObject>("KoishiGO"));
             allFumos.Add("Sakuya", fumoBundle.LoadAsset<GameObject>("SakuyaGO"));
+            allFumos.Add("Youmu", fumoBundle.LoadAsset<GameObject>("YoumuGO"));
         }
 
         [HarmonyPatch(typeof(Skull), "Awake")]
@@ -164,6 +165,33 @@ namespace FumoSkull
                         rotation: Quaternion.Euler(270, 270, 0),
                         scale: new Vector3(1, 1, 1) * 2.75f,
                         masterSkull.material.shader
+                    );
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(Landmine), "Start")]
+        public static class FumofiyLandmine
+        {
+            public static void Postfix(Landmine __instance)
+            {
+                var renderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
+
+                var lightCylinder = Traverse.Create(__instance).Field<GameObject>("lightCylinder").Value;
+                var cylinderRenderer = lightCylinder.GetComponentInChildren<MeshRenderer>();
+                cylinderRenderer.enabled = false;
+
+
+                if (renderer)
+                {
+                    renderer.enabled = false;
+                    CreateFumo(
+                        "Youmu",
+                        lightCylinder.transform,
+                        position: new Vector3(0, 0, 0),
+                        rotation: Quaternion.Euler(0, 270, 0),
+                        scale: new Vector3(1, 1, 1) * 0.001f,
+                        renderer.material.shader
                     );
                 }
             }
