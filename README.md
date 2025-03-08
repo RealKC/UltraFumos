@@ -11,6 +11,7 @@ Features:
 
 ![an image showing the various replacements](https://raw.githubusercontent.com/RealKC/UltraFumos/master/screenshot.png)
 
+If you like the mod, consider sending me a tip on Ko-fi: https://ko-fi.com/realkc.
 
 ## Credits
 
