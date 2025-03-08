@@ -14,11 +14,14 @@ Features:
 
 ## Credits
 
+If you believe you were not properly credited, please tell me and I will change that.
+
 ### Models
 
 * [Renafox](https://sketchfab.com/kryik1023) on Sketchfab:
   * [Reimu scan](https://sketchfab.com/3d-models/project-reimu-fumo-3d-scan-c4723331d1a2400d942c00004d59e1cc) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
   * [Cirno scan](https://sketchfab.com/3d-models/project-cirno-fumo-3d-scan-efd2a7f4dbf048c1a18438db7f86c4b9) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  * [Sakuya scan](https://sketchfab.com/3d-models/project-inu-sakuya-doll-3d-scan-7a573802931f485db8118a9d64f26362) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
   * [Youmu scan](https://sketchfab.com/3d-models/project-v2-youmu-konpaku-fumo-3d-scan-0031ed6284ac4310952095302aad77c2) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [203Null](https://sketchfab.com/203Null) on Sketchfab:
   * [Koishi scan](https://sketchfab.com/3d-models/project-koishi-komeiji-fumo-37a56b489b5c4440bbabb7b7777036f6) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
