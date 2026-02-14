@@ -26,7 +26,7 @@ static class FumoExtensions
     };
 }
 
-[BepInPlugin("UltraFumosTeam.UltraFumos", "UltraFumos", "1.3")]
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public class FumoSkulls : BaseUnityPlugin
 {
     static readonly Dictionary<Fumo, GameObject> allFumos = [];
@@ -42,7 +42,7 @@ public class FumoSkulls : BaseUnityPlugin
         fumoBundle = AssetBundle.LoadFromStream(stream);
         fumoBundle.LoadAllAssets();
 
-        harmony = new Harmony("UltraFumosTeam.UltraFumos");
+        harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         harmony.PatchAll();
 
         foreach (Fumo fumo in Enum.GetValues(typeof(Fumo)))
