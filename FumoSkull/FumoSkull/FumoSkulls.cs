@@ -14,22 +14,22 @@ public class FumoSkulls : BaseUnityPlugin
 
     Harmony harmony;
 
-    static AssetBundle fumoBundle;
+    public static AssetBundle FumoBundle;
 
     public void Awake()
     {
-        Config.Awake();
-
         var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls");
-        fumoBundle = AssetBundle.LoadFromStream(stream);
-        fumoBundle.LoadAllAssets();
+        FumoBundle = AssetBundle.LoadFromStream(stream);
+        FumoBundle.LoadAllAssets();
+
+        Config.Awake();
 
         harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         harmony.PatchAll();
 
         foreach (Fumo fumo in Enum.GetValues(typeof(Fumo)))
         {
-            allFumos.Add(fumo, fumoBundle.LoadAsset<GameObject>(fumo.GameObjectName()));
+            allFumos.Add(fumo, FumoBundle.LoadAsset<GameObject>(fumo.GameObjectName()));
         }
     }
 

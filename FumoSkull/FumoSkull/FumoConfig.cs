@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using PluginConfig.API;
 using PluginConfig.API.Fields;
+using UnityEngine;
 
 namespace FumoSkull;
 
@@ -24,11 +26,14 @@ public class FumoConfig
     {
         config = PluginConfigurator.Create(MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_GUID);
 
+        var texture = FumoSkulls.FumoBundle.LoadAsset<Texture2D>("icon.png");
+        config.image = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+
         cirno = new BoolField(config.rootPanel, "Replace blue skulls with Cirno", "skull.blue.cirno", true);
         reimu = new BoolField(config.rootPanel, "Replace red skulls with Reimu", "skull.red.reimu", true);
         yuyuko = new BoolField(config.rootPanel, "Replace torches with Yuyuko", "torch.yuyuko", true);
         koishi = new BoolField(config.rootPanel, "Replace soap with Koishi", "soap.koishi", true);
-        sakuya = new BoolField(config.rootPanel, "Replace Rockets with Sakuya", "grenade.rocket.sakuya", true);
+        sakuya = new BoolField(config.rootPanel, "Replace rockets with Sakuya", "grenade.rocket.sakuya", true);
         youmu = new BoolField(config.rootPanel, "Replace mines with Youmu", "mine.youmu", true);
         mokou = new BoolField(config.rootPanel, "Replace core eject with Mokou", "grenade.core_eject.mokou", true);
     }
