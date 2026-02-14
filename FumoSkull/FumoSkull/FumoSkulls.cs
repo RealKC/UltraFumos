@@ -30,6 +30,7 @@ static class FumoExtensions
 public class FumoSkulls : BaseUnityPlugin
 {
     static readonly Dictionary<Fumo, GameObject> allFumos = [];
+    static readonly FumoConfig config = new();
 
     Harmony harmony;
 
@@ -37,6 +38,7 @@ public class FumoSkulls : BaseUnityPlugin
 
     public void Awake()
     {
+        config.Awake();
 
         var stream = typeof(FumoSkulls).Assembly.GetManifestResourceStream("fumoskulls");
         fumoBundle = AssetBundle.LoadFromStream(stream);
@@ -56,6 +58,29 @@ public class FumoSkulls : BaseUnityPlugin
     {
         static void Postfix(Skull __instance)
         {
+            var skullType = __instance.GetComponent<ItemIdentifier>().itemType;
+
+            switch (skullType)
+            {
+                case ItemType.SkullBlue:
+                    if (config.IsCirnoDisabled)
+                    {
+                        return;
+                    }
+
+                    break;
+                case ItemType.SkullRed:
+                    if (config.IsReimuDisabled)
+                    {
+                        return;
+                    }
+
+                    break;
+
+                default:
+                    return;
+            }
+
             ModifyMaterial modifyMaterial;
             try
             {
@@ -85,7 +110,7 @@ public class FumoSkulls : BaseUnityPlugin
             {
                 Fumo type;
                 Vector3 position;
-                switch (__instance.GetComponent<ItemIdentifier>().itemType)
+                switch (skullType)
                 {
                     case ItemType.SkullBlue:
                         type = Fumo.Cirno;
@@ -138,6 +163,11 @@ public class FumoSkulls : BaseUnityPlugin
 
         static void PatchRocket(Grenade grenade)
         {
+            if (config.IsSakuyaDisabled)
+            {
+                return;
+            }
+
             Renderer[] meshRenderer = grenade.gameObject.GetComponentsInChildren<MeshRenderer>();
             if (meshRenderer.Length > 0)
             {
@@ -157,6 +187,11 @@ public class FumoSkulls : BaseUnityPlugin
 
         static void PatchCoreEject(Grenade grenade)
         {
+            if (config.IsMokouDisabled)
+            {
+                return;
+            }
+
             Renderer[] meshRenderer = grenade.gameObject.GetComponentsInChildren<MeshRenderer>();
             if (meshRenderer.Length > 0)
             {
@@ -180,6 +215,11 @@ public class FumoSkulls : BaseUnityPlugin
     {
         static void Prefix(Torch __instance)
         {
+            if (config.IsYuyukoDisabled)
+            {
+                return;
+            }
+
             Renderer meshRenderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
             if (meshRenderer)
             {
@@ -201,6 +241,11 @@ public class FumoSkulls : BaseUnityPlugin
     {
         static void Prefix(Soap __instance)
         {
+            if (config.IsKoishiDisabled)
+            {
+                return;
+            }
+
             Renderer masterSkull = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
             if (masterSkull)
             {
@@ -222,6 +267,11 @@ public class FumoSkulls : BaseUnityPlugin
     {
         static void Postfix(Landmine __instance)
         {
+            if (config.IsYoumuDisabled)
+            {
+                return;
+            }
+
             var renderer = __instance.gameObject.GetComponentInChildren<MeshRenderer>();
 
             var lightCylinder = Traverse.Create(__instance).Field<GameObject>("lightCylinder").Value;
