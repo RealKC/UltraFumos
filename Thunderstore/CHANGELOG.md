@@ -1,3 +1,8 @@
+### 1.4.0 --- 16 February 2026
+
+* Replace books and tablets with Patchouli Knowledge
+* Allow configuring what Fumo replacements are enabled (now requires PluginConfigurator)
+
 ### 1.3.0 --- 5 March 2025
 
 * Update the mod for ULTRA_REVAMP (Patch 16c)
