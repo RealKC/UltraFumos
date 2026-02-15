@@ -29,6 +29,8 @@ If you believe you were not properly credited, please tell me and I will change 
   * [Koishi scan](https://sketchfab.com/3d-models/project-koishi-komeiji-fumo-37a56b489b5c4440bbabb7b7777036f6) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [KBMollysuh](https://sketchfab.com/kbmollysuh) on Sketchfab:
   * [Yuyuko scan](https://sketchfab.com/3d-models/project-yuyuko-fumo-3d-reconstruction-c53f91a1a962444fb1568f494dbc13eb) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+* [inframodem](https://sketchfab.com/inframodem) on Sketchfab:
+  * [Patchouli Knowledge Fumo](https://sketchfab.com/3d-models/patchouli-knowledge-fumo-9d04541708be45f1b92a975b9fed8118) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 As far as I can tell, the changes to the models were doing what's necessary to get them into Unity, but I'm not too sure.
 

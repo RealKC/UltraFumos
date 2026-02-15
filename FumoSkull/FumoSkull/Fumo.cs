@@ -9,6 +9,7 @@ public enum Fumo
     Sakuya,
     Youmu,
     Mokou,
+    Patchouli,
 }
 
 public static class FumoExtensions

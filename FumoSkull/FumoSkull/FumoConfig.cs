@@ -17,6 +17,7 @@ public class FumoConfig
     private BoolField sakuya;
     private BoolField youmu;
     private BoolField mokou;
+    private BoolField patchouli;
 
     public FumoConfig()
     {
@@ -36,6 +37,7 @@ public class FumoConfig
         sakuya = new BoolField(config.rootPanel, "Replace rockets with Sakuya", "grenade.rocket.sakuya", true);
         youmu = new BoolField(config.rootPanel, "Replace mines with Youmu", "mine.youmu", true);
         mokou = new BoolField(config.rootPanel, "Replace core eject with Mokou", "grenade.core_eject.mokou", true);
+        patchouli = new BoolField(config.rootPanel, "Replace books and tablets with Patchouli", "book.patchouli", true);
     }
 
     public bool IsCirnoDisabled
@@ -71,5 +73,10 @@ public class FumoConfig
     public bool IsMokouDisabled
     {
         get => !mokou.value;
+    }
+
+    public bool IsPatchouliDisabled
+    {
+        get => !patchouli.value;
     }
 }
