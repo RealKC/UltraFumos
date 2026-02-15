@@ -8,6 +8,7 @@ Features:
 * replaces rockets with Sakura
 * replaces torch (think 4-3) with Yuyuko
 * replaces landmines with Youmu
+* replaces books and tablets with Patchouli
 
 ![an image showing the various replacements](https://raw.githubusercontent.com/RealKC/UltraFumos/master/screenshot.png)
 
@@ -30,7 +31,7 @@ If you believe you were not properly credited, please tell me and I will change 
 * [KBMollysuh](https://sketchfab.com/kbmollysuh) on Sketchfab:
   * [Yuyuko scan](https://sketchfab.com/3d-models/project-yuyuko-fumo-3d-reconstruction-c53f91a1a962444fb1568f494dbc13eb) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * [inframodem](https://sketchfab.com/inframodem) on Sketchfab:
-  * [Patchouli Knowledge Fumo](https://sketchfab.com/3d-models/patchouli-knowledge-fumo-9d04541708be45f1b92a975b9fed8118) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  * [Patchouli Knowledge Fumo](https://sketchfab.com/3d-models/patchouli-knowledge-fumo-9d04541708be45f1b92a975b9fed8118) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) with necessary changes to make it work in Unity (mainly a conversion to .obj)
 
 As far as I can tell, the changes to the models were doing what's necessary to get them into Unity, but I'm not too sure.
 
