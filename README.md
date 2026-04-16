@@ -36,6 +36,9 @@ If you believe you were not properly credited, please tell me and I will change 
 As far as I can tell, the changes to the models were doing what's necessary to get them into Unity, but I'm not too sure.
 
 ### Code
+
+Note that the code is licensed under the [MIT license](https://github.com/RealKC/UltraFumos/blob/main/LICENSE.txt).
+
 * [@The-DoomMan](https://github.com/The-DoomMan) for making the original mod and giving me permission to upload an updated version
 * [The other contributors](https://github.com/The-DoomMan/FumoSkulls/graphs/contributors) to the original Fumo Skulls mod
 * eternalUnion and contributors for [PluginConfigurator](https://github.com/eternalUnion/UKPluginConfigurator) which is licensed under the [MIT License](https://github.com/eternalUnion/UKPluginConfigurator/blob/b120cc59c215f0242c14affa3ea8eade2c615b49/LICENSE)
