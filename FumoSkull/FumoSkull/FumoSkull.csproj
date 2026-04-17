@@ -14,6 +14,10 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>FumoSkull</RootNamespace>
+
+    <AssetBundlePath Condition=" '$(AssetBundlePath)' == '' ">
+      ../../FumoSkullUnityProject/AssetBundle/fumoskulls
+    </AssetBundlePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="../../FumoSkullUnityProject/AssetBundle/fumoskulls" LogicalName="fumoskulls" />
+    <EmbeddedResource Include="$(AssetBundlePath)" LogicalName="fumoskulls" />
   </ItemGroup>
 
   <ItemGroup>
