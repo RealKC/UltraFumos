@@ -3,7 +3,11 @@ name: Checks
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - ".github/workflows/publish.yml"
   pull_request:
+    paths-ignore:
+      - ".github/workflows/publish.yml"
 
 jobs:
   build_mod:
