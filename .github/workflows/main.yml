@@ -10,9 +10,23 @@ on:
       - ".github/workflows/publish.yml"
 
 jobs:
-  build_mod:
+  build-mod:
     uses: ./.github/workflows/build-mod.yml
     secrets:
       unity_license: ${{ secrets.UNITY_LICENSE }}
       unity_email: ${{ secrets.UNITY_EMAIL }}
       unity_password: ${{ secrets.UNITY_PASSWORD }}
+
+  verify-formatting:
+    name: Verify code is correctly formatted
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 10.0.x
+
+      - run: |
+          cd FumoSkull/FumoSkull
+          dotnet format --verify-no-changes --verbosity diagnostic
