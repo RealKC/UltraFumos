@@ -1,0 +1,34 @@
+on:
+    workflow_dispatch:
+
+jobs:
+  build-mod:
+    uses: ./.github/workflows/build-mod.yml
+    secrets:
+      unity_license: ${{ secrets.UNITY_LICENSE }}
+      unity_email: ${{ secrets.UNITY_EMAIL }}
+      unity_password: ${{ secrets.UNITY_PASSWORD }}
+
+  publish:
+    name: Publish mod
+    runs-on: ubuntu-latest
+    needs: build-mod
+    steps:
+      - uses: actions/checkout@v6
+
+      - run: rm Thunderstore/UltraFumos.dll
+
+      - name: Download mod dll
+        uses: actions/download-artifact@v7
+        with:
+          name: UltraFumos.dll
+          path: Thunderstore
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Publish mod
+        run: |
+          dotnet tool install tcli
+          cd Thunderstore
+          dotnet tcli publish
