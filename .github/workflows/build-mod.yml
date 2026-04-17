@@ -1,0 +1,69 @@
+name: Build mod
+
+on:
+    workflow_call:
+        secrets:
+            unity_license:
+                required: true
+            unity_email:
+                required: true
+            unity_password:
+                required: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-asset-bundle:
+    name: Build asset bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/cache@v5
+        with:
+          path: FumoSkullUnityProject/Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library
+
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.unity_license }}
+          UNITY_EMAIL: ${{ secrets.unity_email }}
+          UNITY_PASSWORD: ${{ secrets.unity_password }}
+        with:
+          projectPath: FumoSkullUnityProject
+          buildMethod: AssetBundle.BuildBundles
+
+      - name: Upload asset bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: fumoskulls
+          path: FumoSkullUnityProject/AssetBundle/fumoskulls
+
+  build-mod-dll:
+    name: Build mod
+    runs-on: ubuntu-latest
+    needs: build-asset-bundle
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Download asset bundle
+        uses: actions/download-artifact@v7
+        with:
+          name: fumoskulls
+          path: FumoSkull/FumoSkull
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - run: |
+          ASSETBUNDLEPATH=fumoskulls dotnet build --configuration Release FumoSkull/FumoSkull/FumoSkull.csproj
+
+      - name: Upload mod dll
+        uses: actions/upload-artifact@v7
+        with:
+          name: UltraFumos.dll
+          path: FumoSkull/FumoSkull/bin/Release/netstandard2.1/UltraFumos.dll

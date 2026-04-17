@@ -1,0 +1,14 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build_mod:
+    uses: ./.github/workflows/build-mod.yml
+    secrets:
+      unity_license: ${{ secrets.UNITY_LICENSE }}
+      unity_email: ${{ secrets.UNITY_EMAIL }}
+      unity_password: ${{ secrets.UNITY_PASSWORD }}
